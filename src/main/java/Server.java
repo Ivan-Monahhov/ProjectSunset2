@@ -1,5 +1,7 @@
 
-import com.esotericsoftware.kryonet.*;
+
+import com.esotericsoftware.kryonet.Connection;
+import com.esotericsoftware.kryonet.Listener;
 import com.google.gson.Gson;
 
 import java.io.*;
