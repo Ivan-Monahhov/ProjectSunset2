@@ -2,7 +2,6 @@
 
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
-import com.google.gson.Gson;
 
 import java.io.*;
 import java.time.LocalTime;
@@ -18,7 +17,6 @@ public class Server extends Listener
 
     List<Connection> connectionList = Collections.synchronizedList(new ArrayList<>());
     static com.esotericsoftware.kryonet.Server server;
-    Gson gson = new Gson();
     //static int port = 9001;
     public Server() throws IOException
     {
