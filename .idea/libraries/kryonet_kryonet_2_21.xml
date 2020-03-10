@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="kryonet:kryonet:2.21" type="repository">
+    <properties maven-id="kryonet:kryonet:2.21" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/kryonet/kryonet/2.21/kryonet-2.21.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/esotericsoftware/reflectasm/reflectasm/1.07/reflectasm-1.07-shaded.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/esotericsoftware/minlog/minlog/1.2/minlog-1.2.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/objenesis/objenesis/2.1/objenesis-2.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

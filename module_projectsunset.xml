@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_projectsunset" default="compile.module.projectsunset">
+  <dirname property="module.projectsunset.basedir" file="${ant.file.module_projectsunset}"/>
+  
+  <property name="module.jdk.home.projectsunset" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.projectsunset" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.projectsunset" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.projectsunset" value="-encoding windows-1252 -source 8 ${compiler.args}"/>
+  
+  <property name="projectsunset.output.dir" value="${module.projectsunset.basedir}/out/production/ProjectSunset"/>
+  <property name="projectsunset.testoutput.dir" value="${module.projectsunset.basedir}/out/test/ProjectSunset"/>
+  
+  <path id="projectsunset.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="projectsunset.module.production.classpath">
+    <path refid="${module.jdk.classpath.projectsunset}"/>
+    <path refid="library.kryonet:kryonet:2.21.classpath"/>
+    <path refid="library.com.google.code.gson:gson:2.8.5.classpath"/>
+    <path refid="library.com.esotericsoftware.kryo:kryo:2.24.0.classpath"/>
+  </path>
+  
+  <path id="projectsunset.runtime.production.module.classpath">
+    <pathelement location="${projectsunset.output.dir}"/>
+    <path refid="library.kryonet:kryonet:2.21.classpath"/>
+    <path refid="library.com.google.code.gson:gson:2.8.5.classpath"/>
+    <path refid="library.com.esotericsoftware.kryo:kryo:2.24.0.classpath"/>
+  </path>
+  
+  <path id="projectsunset.module.classpath">
+    <path refid="${module.jdk.classpath.projectsunset}"/>
+    <pathelement location="${projectsunset.output.dir}"/>
+    <path refid="library.kryonet:kryonet:2.21.classpath"/>
+    <path refid="library.com.google.code.gson:gson:2.8.5.classpath"/>
+    <path refid="library.com.esotericsoftware.kryo:kryo:2.24.0.classpath"/>
+  </path>
+  
+  <path id="projectsunset.runtime.module.classpath">
+    <pathelement location="${projectsunset.testoutput.dir}"/>
+    <pathelement location="${projectsunset.output.dir}"/>
+    <path refid="library.kryonet:kryonet:2.21.classpath"/>
+    <path refid="library.com.google.code.gson:gson:2.8.5.classpath"/>
+    <path refid="library.com.esotericsoftware.kryo:kryo:2.24.0.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.projectsunset">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.projectsunset">
+    <patternset refid="excluded.from.module.projectsunset"/>
+  </patternset>
+  
+  <path id="projectsunset.module.sourcepath">
+    <dirset dir="${module.projectsunset.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.projectsunset" depends="compile.module.projectsunset.production,compile.module.projectsunset.tests" description="Compile module ProjectSunset"/>
+  
+  <target name="compile.module.projectsunset.production" depends="register.custom.compilers" description="Compile module ProjectSunset; production classes">
+    <mkdir dir="${projectsunset.output.dir}"/>
+    <javac2 destdir="${projectsunset.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.projectsunset}/javac">
+      <compilerarg line="${compiler.args.projectsunset}"/>
+      <bootclasspath refid="projectsunset.module.bootclasspath"/>
+      <classpath refid="projectsunset.module.production.classpath"/>
+      <src refid="projectsunset.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.projectsunset"/>
+    </javac2>
+    
+    <copy todir="${projectsunset.output.dir}">
+      <fileset dir="${module.projectsunset.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.projectsunset.tests" depends="register.custom.compilers,compile.module.projectsunset.production" description="compile module ProjectSunset; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.projectsunset" description="cleanup module">
+    <delete dir="${projectsunset.output.dir}"/>
+    <delete dir="${projectsunset.testoutput.dir}"/>
+  </target>
+</project>
